@@ -45,12 +45,19 @@ class DoubleLinklist:
             self.head = newNode
     
     def remove(self, key):
-        if self.head is None: 
-            self.head = newNode
-        else:
-            self.head.prev = newNode
-            newNode.next = self.head
-            self.head = newNode
+        if self.head is None:
+            return
+        current = self.head
+        while current is not None:
+            if current.data == key:
+                if current.prev is not None:
+                    current.prev.next = current.next
+                else:
+                    self.head = current.next
+                if current.next is not None:
+                    current.next.prev = current.prev
+                return
+            current = current.next
 
 dll = DoubleLinklist()
 dll.printDoubleLinkList()
